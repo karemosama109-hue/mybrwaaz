@@ -1,0 +1,35 @@
+{
+  "name": "brwaaz-frame-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "استوديو BRWAAZ لتصميم البراويز ثلاثية الأبعاد",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "dev": "concurrently -k \"vite --host 127.0.0.1\" \"wait-on http://127.0.0.1:5173 && electron .\"",
+    "build": "vite build",
+    "desktop": "electron .",
+    "dist": "npm run build && electron-builder"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "4.3.4",
+    "electron": "33.2.1",
+    "lucide-react": "0.468.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "three": "0.170.0",
+    "vite": "6.0.7"
+  },
+  "devDependencies": {
+    "concurrently": "9.1.2",
+    "electron-builder": "25.1.8",
+    "wait-on": "8.0.1"
+  },
+  "build": {
+    "appId": "studio.brwaaz.frames",
+    "productName": "BRWAAZ Frame Studio",
+    "directories": { "output": "release" },
+    "files": ["dist/**", "electron/**", "package.json"],
+    "win": { "target": "nsis", "artifactName": "BRWAAZ-Frame-Studio-Setup-${version}.${ext}" },
+    "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true }
+  }
+}
